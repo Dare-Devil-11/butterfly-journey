@@ -8,17 +8,15 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#1a1718;min-height:400vh;font-family:system-ui,sans-serif;overflow-x:hidden}
 .section{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
-h1{font-size:clamp(28px,5vw,64px);font-weight:700;background:linear-gradient(135deg,#Ed71a8,#383637,#f093b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
+h1{font-size:clamp(28px,5vw,64px);font-weight:700;background:linear-gradient(135deg,#Ed71a8,#5bb8f5,#383637,#f093b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
 p{color:rgba(237,113,168,.45);font-size:clamp(13px,2vw,17px);margin-top:14px;max-width:460px}
 .line{width:1px;height:70px;background:linear-gradient(#Ed71a8,transparent);margin:20px auto 0;opacity:.35}
-.hint{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(237,113,168,.38);pointer-events:none;animation:bob 2s ease-in-out infinite}
+.hint{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(91,184,245,.4);pointer-events:none;animation:bob 2s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
-
-/* ── EMBED CODE BOX ─────────────────── */
 .embed-section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px;background:#111010}
 .embed-section h2{font-size:clamp(18px,3vw,32px);color:#Ed71a8;letter-spacing:.06em;margin-bottom:8px}
 .embed-section p{color:rgba(255,255,255,.35);font-size:13px;margin-bottom:24px}
-.code-block{background:#0d0c0d;border:1px solid #2a2a2a;border-radius:10px;padding:20px 24px;max-width:720px;width:100%;font-family:'SF Mono','Fira Code',monospace;font-size:11px;color:#a0a0a0;line-height:1.65;text-align:left;white-space:pre-wrap;word-break:break-all;position:relative}
+.code-block{background:#0d0c0d;border:1px solid #2a2a2a;border-radius:10px;padding:20px 24px;max-width:760px;width:100%;font-family:'SF Mono','Fira Code',monospace;font-size:11px;color:#a0a0a0;line-height:1.65;text-align:left;white-space:pre-wrap;word-break:break-all;position:relative}
 .copy-btn{position:absolute;top:12px;right:12px;background:#Ed71a8;color:#1a1718;border:none;font-size:11px;font-weight:700;padding:5px 12px;border-radius:6px;cursor:pointer;letter-spacing:.04em;transition:opacity .15s}
 .copy-btn:hover{opacity:.85}
 </style>
@@ -31,7 +29,7 @@ p{color:rgba(237,113,168,.45);font-size:clamp(13px,2vw,17px);margin-top:14px;max
   <div class="line"></div>
 </div></div>
 
-<div class="section" style="background:rgba(237,113,168,.02)"><div>
+<div class="section" style="background:rgba(91,184,245,.02)"><div>
   <h1>Dissolve.<br>Reform.</h1>
   <p>Every transformation needs letting go of what you were.</p>
 </div></div>
@@ -49,79 +47,18 @@ p{color:rgba(237,113,168,.45);font-size:clamp(13px,2vw,17px);margin-top:14px;max
 <div class="embed-section">
   <h2>EMBED CODE</h2>
   <p>Paste anywhere — zero dependencies</p>
-  <div class="code-block" id="embed-code">&lt;!-- BUTTERFLY EMBED — paste anywhere --&gt;
-&lt;style id="bf-sty"&gt;
-#bf-w{position:fixed;inset:0;pointer-events:none;z-index:9999}
-#bf-s{position:absolute;width:80px;height:64px;filter:drop-shadow(0 0 14px #Ed71a8) drop-shadow(0 0 5px #383637)}
-.bfl{transform-origin:60px 46px}.bfr{transform-origin:60px 46px}
-@keyframes bfl{50%{transform:rotateY(58deg)scaleX(.35)}}
-@keyframes bfr{50%{transform:rotateY(-58deg)scaleX(.35)}}
-@keyframes bfo{to{transform:rotateY(82deg)scaleX(.18)}}
-@keyframes bfc{to{transform:rotateY(-82deg)scaleX(.18)}}
-.bf-fly .bfl{animation:bfl .4s ease-in-out infinite}
-.bf-fly .bfr{animation:bfr .4s ease-in-out infinite}
-.bf-land .bfl{animation:bfo 1.3s cubic-bezier(.16,1,.3,1)forwards}
-.bf-land .bfr{animation:bfc 1.3s cubic-bezier(.16,1,.3,1)forwards}
-.bf-t{position:fixed;width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:9998;animation:bft .7s ease-out forwards}
-@keyframes bft{to{opacity:0;transform:scale(0)}}
-&lt;/style&gt;
-&lt;div id="bf-w"&gt;&lt;svg id="bf-s" viewBox="0 0 120 90"&gt;
-&lt;defs&gt;
-&lt;linearGradient id="bfg1" x1="0%" y1="0%" x2="100%" y2="100%"&gt;
-  &lt;stop offset="0%" stop-color="#Ed71a8"/&gt;&lt;stop offset="40%" stop-color="#383637"/&gt;
-  &lt;stop offset="70%" stop-color="#Ed71a8"/&gt;&lt;stop offset="100%" stop-color="#f093b8"/&gt;
-&lt;/linearGradient&gt;
-&lt;linearGradient id="bfg2" x1="100%" y1="0%" x2="0%" y2="100%"&gt;
-  &lt;stop offset="0%" stop-color="#383637"/&gt;&lt;stop offset="50%" stop-color="#Ed71a8"/&gt;
-  &lt;stop offset="100%" stop-color="#f4a0c4"/&gt;
-&lt;/linearGradient&gt;
-&lt;/defs&gt;
-&lt;g class="bfl"&gt;&lt;path d="M60,44 C50,25 30,8 10,12 C2,14 0,26 4,36 C8,44 24,46 44,44Z" fill="rgba(237,113,168,.15)" stroke="url(#bfg1)" stroke-width="2"/&gt;&lt;path d="M60,44 C45,30 20,18 8,24" fill="none" stroke="url(#bfg2)" stroke-width=".8"/&gt;&lt;circle cx="18" cy="16" r="2.5" fill="rgba(255,255,255,.5)"/&gt;&lt;/g&gt;
-&lt;g class="bfr"&gt;&lt;path d="M60,44 C70,25 90,8 110,12 C118,14 120,26 116,36 C112,44 96,46 76,44Z" fill="rgba(237,113,168,.15)" stroke="url(#bfg1)" stroke-width="2"/&gt;&lt;path d="M60,44 C75,30 100,18 112,24" fill="none" stroke="url(#bfg2)" stroke-width=".8"/&gt;&lt;circle cx="102" cy="16" r="2.5" fill="rgba(255,255,255,.5)"/&gt;&lt;/g&gt;
-&lt;g class="bfl"&gt;&lt;path d="M60,48 C44,56 22,62 12,74 C6,82 14,88 26,82 C42,74 56,60 60,48Z" fill="rgba(56,54,55,.28)" stroke="url(#bfg2)" stroke-width="2"/&gt;&lt;circle cx="16" cy="78" r="3" fill="#Ed71a8" opacity=".7"/&gt;&lt;/g&gt;
-&lt;g class="bfr"&gt;&lt;path d="M60,48 C76,56 98,62 108,74 C114,82 106,88 94,82 C78,74 64,60 60,48Z" fill="rgba(56,54,55,.28)" stroke="url(#bfg2)" stroke-width="2"/&gt;&lt;circle cx="104" cy="78" r="3" fill="#Ed71a8" opacity=".7"/&gt;&lt;/g&gt;
-&lt;ellipse cx="60" cy="50" rx="3" ry="20" fill="rgba(237,113,168,.6)" stroke="url(#bfg1)" stroke-width="1"/&gt;
-&lt;circle cx="60" cy="28" r="4.5" fill="#383637" stroke="#Ed71a8" stroke-width="1.5"/&gt;
-&lt;path d="M59,24 Q48,12 42,8" fill="none" stroke="url(#bfg1)" stroke-width="1.2" stroke-linecap="round"/&gt;&lt;circle cx="42" cy="8" r="2" fill="#fff" opacity=".8"/&gt;
-&lt;path d="M61,24 Q72,12 78,8" fill="none" stroke="url(#bfg1)" stroke-width="1.2" stroke-linecap="round"/&gt;&lt;circle cx="78" cy="8" r="2" fill="#fff" opacity=".8"/&gt;
-&lt;/svg&gt;&lt;/div&gt;
-&lt;script&gt;
-(function(){
-const s=document.getElementById('bf-s');
-const W=[[78,8],[18,20],[65,34],[10,50],[72,64],[30,76],[50,87]];
-let lx=78,ly=8,ld=false;
-function cr(t,a,b,c,d){const u=1-t;return u*u*b+2*u*t*c+t*t*d}
-function gp(p){const n=W.length-1,g=Math.min(~~(p*n),n-1),t=p*n-g;return{x:cr(t,0,W[g][0],W[Math.min(n,g+1)][0],W[Math.min(n,g+1)][0]),y:cr(t,0,W[g][1],W[Math.min(n,g+1)][1],W[Math.min(n,g+1)][1])}}
-s.classList.add('bf-fly');
-s.style.cssText+='left:'+Math.round(W[0][0]/100*innerWidth-40)+'px;top:'+Math.round(W[0][1]/100*innerHeight-32)+'px';
-window.addEventListener('scroll',function(){
-if(ld)return;
-requestAnimationFrame(function(){
-const dH=document.documentElement.scrollHeight-innerHeight;
-const p=gp(Math.min(dH>0?scrollY/dH:0,1));
-const x=p.x/100*innerWidth,y=p.y/100*innerHeight;
-const a=Math.atan2(p.y-ly,p.x-lx)*57.3-90;
-s.style.left=x-40+'px';s.style.top=y-32+'px';s.style.transform='rotate('+a*.4+'deg)';
-if(Math.hypot(x-lx/100*innerWidth,y-ly/100*innerHeight)&gt;8){
-const d=document.createElement('div');
-d.className='bf-t';d.style.cssText='left:'+x+'px;top:'+y+'px;background:'+(Math.random()&gt;.5?'#Ed71a8':'#383637');
-document.body.appendChild(d);setTimeout(function(){d.remove()},720);}
-lx=p.x;ly=p.y;
-if(p.y&gt;=90&amp;&amp;!ld){ld=true;s.style.transition='left 1s,top 1s,transform .7s';s.style.transform='rotate(0)scale(.8)';setTimeout(function(){s.classList.replace('bf-fly','bf-land');s.style.filter='drop-shadow(0 0 28px #Ed71a8)drop-shadow(0 0 10px #fff)'},700);}
-});},{passive:true});
-})();
-&lt;/script&gt;</div>
+  <div class="code-block" id="ec">loading...</div>
   <button class="copy-btn" onclick="copyEmbed()">COPY</button>
 </div>
 
 <div class="hint">↓ scroll</div>
 
-<!-- ══════════════════════════════════════
-     ACTUAL BUTTERFLY (live on this page)
-     ══════════════════════════════════════ -->
-<style id="bf-sty">
+<!-- ═══════════════════════════════════
+     BUTTERFLY — also the embed source
+     ═══════════════════════════════════ -->
+<style>
 #bf-w{position:fixed;inset:0;pointer-events:none;z-index:9999}
-#bf-s{position:absolute;width:80px;height:64px;filter:drop-shadow(0 0 14px #Ed71a8) drop-shadow(0 0 5px #383637)}
+#bf-s{position:absolute;width:80px;height:64px;filter:drop-shadow(0 0 12px #Ed71a8) drop-shadow(0 0 6px #5bb8f5) drop-shadow(0 0 2px #383637)}
 .bfl{transform-origin:60px 46px}.bfr{transform-origin:60px 46px}
 @keyframes bfl{50%{transform:rotateY(58deg)scaleX(.35)}}
 @keyframes bfr{50%{transform:rotateY(-58deg)scaleX(.35)}}
@@ -131,118 +68,181 @@ if(p.y&gt;=90&amp;&amp;!ld){ld=true;s.style.transition='left 1s,top 1s,transform
 .bf-fly .bfr{animation:bfr .4s ease-in-out infinite}
 .bf-land .bfl{animation:bfo 1.3s cubic-bezier(.16,1,.3,1)forwards}
 .bf-land .bfr{animation:bfc 1.3s cubic-bezier(.16,1,.3,1)forwards}
-.bf-t{position:fixed;width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:9998;animation:bft .7s ease-out forwards}
-@keyframes bft{to{opacity:0;transform:scale(0)}}
+/* pixel dissolve particles */
+.bf-px{position:fixed;border-radius:1px;pointer-events:none;z-index:9997;animation:bf-pdis .75s ease-out forwards}
+@keyframes bf-pdis{0%{opacity:.9;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(0)}}
+/* shadow ghost */
+#bf-ghost{position:absolute;width:80px;height:64px;opacity:0;transition:opacity .1s;filter:drop-shadow(0 0 6px #5bb8f5)}
 </style>
-<div id="bf-w"><svg id="bf-s" viewBox="0 0 120 90">
-<defs>
-<linearGradient id="bfg1" x1="0%" y1="0%" x2="100%" y2="100%">
-  <stop offset="0%" stop-color="#Ed71a8"/><stop offset="40%" stop-color="#383637"/>
-  <stop offset="70%" stop-color="#Ed71a8"/><stop offset="100%" stop-color="#f093b8"/>
-</linearGradient>
-<linearGradient id="bfg2" x1="100%" y1="0%" x2="0%" y2="100%">
-  <stop offset="0%" stop-color="#383637"/><stop offset="50%" stop-color="#Ed71a8"/>
-  <stop offset="100%" stop-color="#f4a0c4"/>
-</linearGradient>
-</defs>
-<g class="bfl"><path d="M60,44 C50,25 30,8 10,12 C2,14 0,26 4,36 C8,44 24,46 44,44Z" fill="rgba(237,113,168,.15)" stroke="url(#bfg1)" stroke-width="2"/><path d="M60,44 C45,30 20,18 8,24" fill="none" stroke="url(#bfg2)" stroke-width=".8"/><circle cx="18" cy="16" r="2.5" fill="rgba(255,255,255,.5)"/></g>
-<g class="bfr"><path d="M60,44 C70,25 90,8 110,12 C118,14 120,26 116,36 C112,44 96,46 76,44Z" fill="rgba(237,113,168,.15)" stroke="url(#bfg1)" stroke-width="2"/><path d="M60,44 C75,30 100,18 112,24" fill="none" stroke="url(#bfg2)" stroke-width=".8"/><circle cx="102" cy="16" r="2.5" fill="rgba(255,255,255,.5)"/></g>
-<g class="bfl"><path d="M60,48 C44,56 22,62 12,74 C6,82 14,88 26,82 C42,74 56,60 60,48Z" fill="rgba(56,54,55,.28)" stroke="url(#bfg2)" stroke-width="2"/><circle cx="16" cy="78" r="3" fill="#Ed71a8" opacity=".7"/></g>
-<g class="bfr"><path d="M60,48 C76,56 98,62 108,74 C114,82 106,88 94,82 C78,74 64,60 60,48Z" fill="rgba(56,54,55,.28)" stroke="url(#bfg2)" stroke-width="2"/><circle cx="104" cy="78" r="3" fill="#Ed71a8" opacity=".7"/></g>
-<ellipse cx="60" cy="50" rx="3" ry="20" fill="rgba(237,113,168,.6)" stroke="url(#bfg1)" stroke-width="1"/>
-<circle cx="60" cy="28" r="4.5" fill="#383637" stroke="#Ed71a8" stroke-width="1.5"/>
-<path d="M59,24 Q48,12 42,8" fill="none" stroke="url(#bfg1)" stroke-width="1.2" stroke-linecap="round"/><circle cx="42" cy="8" r="2" fill="#fff" opacity=".8"/>
-<path d="M61,24 Q72,12 78,8" fill="none" stroke="url(#bfg1)" stroke-width="1.2" stroke-linecap="round"/><circle cx="78" cy="8" r="2" fill="#fff" opacity=".8"/>
-</svg></div>
+<div id="bf-w">
+  <svg id="bf-ghost" viewBox="0 0 120 90">
+    <defs>
+      <linearGradient id="bgg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#5bb8f5" stop-opacity=".5"/>
+        <stop offset="60%" stop-color="#383637" stop-opacity=".3"/>
+        <stop offset="100%" stop-color="#Ed71a8" stop-opacity=".2"/>
+      </linearGradient>
+    </defs>
+    <g class="bfl"><path d="M60,44 C50,25 30,8 10,12 C2,14 0,26 4,36 C8,44 24,46 44,44Z" fill="none" stroke="url(#bgg1)" stroke-width="2"/></g>
+    <g class="bfr"><path d="M60,44 C70,25 90,8 110,12 C118,14 120,26 116,36 C112,44 96,46 76,44Z" fill="none" stroke="url(#bgg1)" stroke-width="2"/></g>
+    <g class="bfl"><path d="M60,48 C44,56 22,62 12,74 C6,82 14,88 26,82 C42,74 56,60 60,48Z" fill="none" stroke="url(#bgg1)" stroke-width="1.5"/></g>
+    <g class="bfr"><path d="M60,48 C76,56 98,62 108,74 C114,82 106,88 94,82 C78,74 64,60 60,48Z" fill="none" stroke="url(#bgg1)" stroke-width="1.5"/></g>
+  </svg>
+  <svg id="bf-s" viewBox="0 0 120 90">
+    <defs>
+      <linearGradient id="bfg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#Ed71a8"/>
+        <stop offset="30%" stop-color="#5bb8f5"/>
+        <stop offset="65%" stop-color="#Ed71a8"/>
+        <stop offset="100%" stop-color="#f093b8"/>
+      </linearGradient>
+      <linearGradient id="bfg2" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#383637"/>
+        <stop offset="40%" stop-color="#5bb8f5"/>
+        <stop offset="100%" stop-color="#Ed71a8"/>
+      </linearGradient>
+    </defs>
+    <g class="bfl"><path d="M60,44 C50,25 30,8 10,12 C2,14 0,26 4,36 C8,44 24,46 44,44Z" fill="rgba(91,184,245,.08)" stroke="url(#bfg1)" stroke-width="2"/><path d="M60,44 C45,30 20,18 8,24" fill="none" stroke="url(#bfg2)" stroke-width=".8"/><circle cx="18" cy="16" r="2.5" fill="rgba(255,255,255,.5)"/></g>
+    <g class="bfr"><path d="M60,44 C70,25 90,8 110,12 C118,14 120,26 116,36 C112,44 96,46 76,44Z" fill="rgba(237,113,168,.12)" stroke="url(#bfg1)" stroke-width="2"/><path d="M60,44 C75,30 100,18 112,24" fill="none" stroke="url(#bfg2)" stroke-width=".8"/><circle cx="102" cy="16" r="2.5" fill="rgba(255,255,255,.5)"/></g>
+    <g class="bfl"><path d="M60,48 C44,56 22,62 12,74 C6,82 14,88 26,82 C42,74 56,60 60,48Z" fill="rgba(56,54,55,.25)" stroke="url(#bfg2)" stroke-width="2"/><circle cx="16" cy="78" r="3" fill="#5bb8f5" opacity=".7"/></g>
+    <g class="bfr"><path d="M60,48 C76,56 98,62 108,74 C114,82 106,88 94,82 C78,74 64,60 60,48Z" fill="rgba(56,54,55,.25)" stroke="url(#bfg2)" stroke-width="2"/><circle cx="104" cy="78" r="3" fill="#Ed71a8" opacity=".7"/></g>
+    <ellipse cx="60" cy="50" rx="3" ry="20" fill="rgba(237,113,168,.5)" stroke="url(#bfg1)" stroke-width="1"/>
+    <circle cx="60" cy="28" r="4.5" fill="#383637" stroke="#5bb8f5" stroke-width="1.5"/>
+    <path d="M59,24 Q48,12 42,8" fill="none" stroke="url(#bfg1)" stroke-width="1.2" stroke-linecap="round"/><circle cx="42" cy="8" r="2" fill="#fff" opacity=".8"/>
+    <path d="M61,24 Q72,12 78,8" fill="none" stroke="url(#bfg1)" stroke-width="1.2" stroke-linecap="round"/><circle cx="78" cy="8" r="2" fill="#fff" opacity=".8"/>
+  </svg>
+</div>
+
 <script>
 (function(){
-const s=document.getElementById('bf-s');
+  const s  = document.getElementById('bf-s');
+  const gh = document.getElementById('bf-ghost');
+  const W  = [[78,8],[18,20],[65,34],[10,50],[72,64],[30,76],[50,87]];
+  let lx=78, ly=8, ld=false, gTimer=null;
+  const PX_COLORS = ['#Ed71a8','#5bb8f5','#383637','#a0d8f5','#f4a0c4','#fff'];
+
+  function cr(t,a,b,c,d){const u=1-t;return u*u*b+2*u*t*c+t*t*d}
+  function gp(p){
+    const n=W.length-1, g=Math.min(~~(p*n),n-1), t=p*n-g;
+    return{x:cr(t,0,W[g][0],W[Math.min(n,g+1)][0],W[Math.min(n,g+1)][0]),
+           y:cr(t,0,W[g][1],W[Math.min(n,g+1)][1],W[Math.min(n,g+1)][1])}
+  }
+
+  function spawnPixels(cx, cy){
+    const count = 8 + ~~(Math.random()*6);
+    for(let i=0;i<count;i++){
+      const el = document.createElement('div');
+      el.className = 'bf-px';
+      const sz = 2 + Math.random()*3.5;
+      const angle = Math.random()*Math.PI*2;
+      const dist  = 12 + Math.random()*28;
+      const dx = Math.cos(angle)*dist;
+      const dy = Math.sin(angle)*dist;
+      const col = PX_COLORS[~~(Math.random()*PX_COLORS.length)];
+      el.style.cssText = `left:${cx+Math.random()*20-10}px;top:${cy+Math.random()*16-8}px;width:${sz}px;height:${sz}px;background:${col};--dx:${dx}px;--dy:${dy}px;animation-duration:${0.5+Math.random()*.5}s`;
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(), 900);
+    }
+  }
+
+  function showGhost(x, y, angle){
+    gh.style.left = x-40+'px';
+    gh.style.top  = y-32+'px';
+    gh.style.transform = `rotate(${angle*.4}deg)`;
+    gh.style.opacity = '0.35';
+    clearTimeout(gTimer);
+    gTimer = setTimeout(()=>{ gh.style.opacity='0'; }, 180);
+  }
+
+  s.classList.add('bf-fly');
+  s.style.left = Math.round(W[0][0]/100*innerWidth-40)+'px';
+  s.style.top  = Math.round(W[0][1]/100*innerHeight-32)+'px';
+
+  window.addEventListener('scroll', function(){
+    if(ld) return;
+    requestAnimationFrame(function(){
+      const dH = document.documentElement.scrollHeight - innerHeight;
+      const p  = gp(Math.min(dH>0 ? scrollY/dH : 0, 1));
+      const x  = p.x/100*innerWidth;
+      const y  = p.y/100*innerHeight;
+      const a  = Math.atan2(p.y-ly, p.x-lx)*57.3 - 90;
+      const moved = Math.hypot(x - lx/100*innerWidth, y - ly/100*innerHeight);
+
+      s.style.left      = x-40+'px';
+      s.style.top       = y-32+'px';
+      s.style.transform = `rotate(${a*.4}deg)`;
+
+      if(moved > 6){
+        spawnPixels(x, y);
+        showGhost(x, y, a);
+      }
+
+      lx=p.x; ly=p.y;
+
+      if(p.y>=90 && !ld){
+        ld=true;
+        s.style.transition='left 1s,top 1s,transform .7s';
+        s.style.transform='rotate(0)scale(.8)';
+        setTimeout(()=>{
+          s.classList.replace('bf-fly','bf-land');
+          s.style.filter='drop-shadow(0 0 28px #Ed71a8)drop-shadow(0 0 12px #5bb8f5)drop-shadow(0 0 4px #fff)';
+          spawnPixels(x,y); spawnPixels(x,y); spawnPixels(x,y);
+        }, 700);
+      }
+    });
+  },{passive:true});
+
+  /* ── build embed code display ── */
+  const EMBED = `&lt;!-- BUTTERFLY EMBED — paste anywhere --&gt;
+&lt;style&gt;
+#bf-w{position:fixed;inset:0;pointer-events:none;z-index:9999}
+#bf-s{position:absolute;width:80px;height:64px;filter:drop-shadow(0 0 12px #Ed71a8) drop-shadow(0 0 6px #5bb8f5)}
+.bfl{transform-origin:60px 46px}.bfr{transform-origin:60px 46px}
+@keyframes bfl{50%{transform:rotateY(58deg)scaleX(.35)}}
+@keyframes bfr{50%{transform:rotateY(-58deg)scaleX(.35)}}
+@keyframes bfo{to{transform:rotateY(82deg)scaleX(.18)}}
+@keyframes bfc{to{transform:rotateY(-82deg)scaleX(.18)}}
+.bf-fly .bfl{animation:bfl .4s ease-in-out infinite}
+.bf-fly .bfr{animation:bfr .4s ease-in-out infinite}
+.bf-land .bfl{animation:bfo 1.3s cubic-bezier(.16,1,.3,1)forwards}
+.bf-land .bfr{animation:bfc 1.3s cubic-bezier(.16,1,.3,1)forwards}
+.bf-px{position:fixed;border-radius:1px;pointer-events:none;z-index:9997;animation:bf-pdis .75s ease-out forwards}
+@keyframes bf-pdis{0%{opacity:.9;transform:translate(0,0)scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy))scale(0)}}
+#bf-ghost{position:absolute;width:80px;height:64px;opacity:0;transition:opacity .1s;filter:drop-shadow(0 0 6px #5bb8f5)}
+&lt;/style&gt;
+&lt;div id="bf-w"&gt;
+&lt;svg id="bf-ghost" viewBox="0 0 120 90"&gt;&lt;defs&gt;&lt;linearGradient id="bgg1" x1="0%" y1="0%" x2="100%" y2="100%"&gt;&lt;stop offset="0%" stop-color="#5bb8f5" stop-opacity=".5"/&gt;&lt;stop offset="100%" stop-color="#Ed71a8" stop-opacity=".2"/&gt;&lt;/linearGradient&gt;&lt;/defs&gt;&lt;g class="bfl"&gt;&lt;path d="M60,44 C50,25 30,8 10,12 C2,14 0,26 4,36 C8,44 24,46 44,44Z" fill="none" stroke="url(#bgg1)" stroke-width="2"/&gt;&lt;/g&gt;&lt;g class="bfr"&gt;&lt;path d="M60,44 C70,25 90,8 110,12 C118,14 120,26 116,36 C112,44 96,46 76,44Z" fill="none" stroke="url(#bgg1)" stroke-width="2"/&gt;&lt;/g&gt;&lt;/svg&gt;
+&lt;svg id="bf-s" viewBox="0 0 120 90"&gt;&lt;defs&gt;&lt;linearGradient id="bfg1" x1="0%" y1="0%" x2="100%" y2="100%"&gt;&lt;stop offset="0%" stop-color="#Ed71a8"/&gt;&lt;stop offset="30%" stop-color="#5bb8f5"/&gt;&lt;stop offset="65%" stop-color="#Ed71a8"/&gt;&lt;stop offset="100%" stop-color="#f093b8"/&gt;&lt;/linearGradient&gt;&lt;linearGradient id="bfg2" x1="100%" y1="0%" x2="0%" y2="100%"&gt;&lt;stop offset="0%" stop-color="#383637"/&gt;&lt;stop offset="40%" stop-color="#5bb8f5"/&gt;&lt;stop offset="100%" stop-color="#Ed71a8"/&gt;&lt;/linearGradient&gt;&lt;/defs&gt;
+&lt;g class="bfl"&gt;&lt;path d="M60,44 C50,25 30,8 10,12 C2,14 0,26 4,36 C8,44 24,46 44,44Z" fill="rgba(91,184,245,.08)" stroke="url(#bfg1)" stroke-width="2"/&gt;&lt;path d="M60,44 C45,30 20,18 8,24" fill="none" stroke="url(#bfg2)" stroke-width=".8"/&gt;&lt;circle cx="18" cy="16" r="2.5" fill="rgba(255,255,255,.5)"/&gt;&lt;/g&gt;
+&lt;g class="bfr"&gt;&lt;path d="M60,44 C70,25 90,8 110,12 C118,14 120,26 116,36 C112,44 96,46 76,44Z" fill="rgba(237,113,168,.12)" stroke="url(#bfg1)" stroke-width="2"/&gt;&lt;path d="M60,44 C75,30 100,18 112,24" fill="none" stroke="url(#bfg2)" stroke-width=".8"/&gt;&lt;circle cx="102" cy="16" r="2.5" fill="rgba(255,255,255,.5)"/&gt;&lt;/g&gt;
+&lt;g class="bfl"&gt;&lt;path d="M60,48 C44,56 22,62 12,74 C6,82 14,88 26,82 C42,74 56,60 60,48Z" fill="rgba(56,54,55,.25)" stroke="url(#bfg2)" stroke-width="2"/&gt;&lt;circle cx="16" cy="78" r="3" fill="#5bb8f5" opacity=".7"/&gt;&lt;/g&gt;
+&lt;g class="bfr"&gt;&lt;path d="M60,48 C76,56 98,62 108,74 C114,82 106,88 94,82 C78,74 64,60 60,48Z" fill="rgba(56,54,55,.25)" stroke="url(#bfg2)" stroke-width="2"/&gt;&lt;circle cx="104" cy="78" r="3" fill="#Ed71a8" opacity=".7"/&gt;&lt;/g&gt;
+&lt;ellipse cx="60" cy="50" rx="3" ry="20" fill="rgba(237,113,168,.5)" stroke="url(#bfg1)" stroke-width="1"/&gt;
+&lt;circle cx="60" cy="28" r="4.5" fill="#383637" stroke="#5bb8f5" stroke-width="1.5"/&gt;
+&lt;path d="M59,24 Q48,12 42,8" fill="none" stroke="url(#bfg1)" stroke-width="1.2" stroke-linecap="round"/&gt;&lt;circle cx="42" cy="8" r="2" fill="#fff" opacity=".8"/&gt;
+&lt;path d="M61,24 Q72,12 78,8" fill="none" stroke="url(#bfg1)" stroke-width="1.2" stroke-linecap="round"/&gt;&lt;circle cx="78" cy="8" r="2" fill="#fff" opacity=".8"/&gt;
+&lt;/svg&gt;&lt;/div&gt;
+&lt;script&gt;
+(function(){
+const s=document.getElementById('bf-s'),gh=document.getElementById('bf-ghost');
 const W=[[78,8],[18,20],[65,34],[10,50],[72,64],[30,76],[50,87]];
-let lx=78,ly=8,ld=false;
+const PC=['#Ed71a8','#5bb8f5','#383637','#a0d8f5','#f4a0c4','#fff'];
+let lx=78,ly=8,ld=false,gt=null;
 function cr(t,a,b,c,d){const u=1-t;return u*u*b+2*u*t*c+t*t*d}
 function gp(p){const n=W.length-1,g=Math.min(~~(p*n),n-1),t=p*n-g;return{x:cr(t,0,W[g][0],W[Math.min(n,g+1)][0],W[Math.min(n,g+1)][0]),y:cr(t,0,W[g][1],W[Math.min(n,g+1)][1],W[Math.min(n,g+1)][1])}}
+function sp(cx,cy){for(let i=0;i&lt;10;i++){const el=document.createElement('div');el.className='bf-px';const sz=2+Math.random()*3.5,ang=Math.random()*Math.PI*2,dist=12+Math.random()*28;el.style.cssText='left:'+(cx+Math.random()*20-10)+'px;top:'+(cy+Math.random()*16-8)+'px;width:'+sz+'px;height:'+sz+'px;background:'+PC[~~(Math.random()*PC.length)]+';--dx:'+(Math.cos(ang)*dist)+'px;--dy:'+(Math.sin(ang)*dist)+'px;animation-duration:'+(0.5+Math.random()*.5)+'s';document.body.appendChild(el);setTimeout(()=&gt;el.remove(),900);}}
 s.classList.add('bf-fly');
-s.style.cssText+='left:'+Math.round(W[0][0]/100*innerWidth-40)+'px;top:'+Math.round(W[0][1]/100*innerHeight-32)+'px';
-window.addEventListener('scroll',function(){
-if(ld)return;
-requestAnimationFrame(function(){
-const dH=document.documentElement.scrollHeight-innerHeight;
-const p=gp(Math.min(dH>0?scrollY/dH:0,1));
-const x=p.x/100*innerWidth,y=p.y/100*innerHeight;
-const a=Math.atan2(p.y-ly,p.x-lx)*57.3-90;
-s.style.left=x-40+'px';s.style.top=y-32+'px';s.style.transform='rotate('+a*.4+'deg)';
-if(Math.hypot(x-lx/100*innerWidth,y-ly/100*innerHeight)>8){
-const d=document.createElement('div');
-d.className='bf-t';d.style.cssText='left:'+x+'px;top:'+y+'px;background:'+(Math.random()>.5?'#Ed71a8':'#383637');
-document.body.appendChild(d);setTimeout(function(){d.remove()},720);}
-lx=p.x;ly=p.y;
-if(p.y>=90&&!ld){ld=true;s.style.transition='left 1s,top 1s,transform .7s';s.style.transform='rotate(0)scale(.8)';setTimeout(function(){s.classList.replace('bf-fly','bf-land');s.style.filter='drop-shadow(0 0 28px #Ed71a8)drop-shadow(0 0 10px #fff)'},700);}
-});},{passive:true});
+s.style.left=Math.round(W[0][0]/100*innerWidth-40)+'px';
+s.style.top=Math.round(W[0][1]/100*innerHeight-32)+'px';
+window.addEventListener('scroll',function(){if(ld)return;requestAnimationFrame(function(){const dH=document.documentElement.scrollHeight-innerHeight;const p=gp(Math.min(dH&gt;0?scrollY/dH:0,1));const x=p.x/100*innerWidth,y=p.y/100*innerHeight;const a=Math.atan2(p.y-ly,p.x-lx)*57.3-90;s.style.left=x-40+'px';s.style.top=y-32+'px';s.style.transform='rotate('+a*.4+'deg)';if(Math.hypot(x-lx/100*innerWidth,y-ly/100*innerHeight)&gt;6){sp(x,y);gh.style.left=x-40+'px';gh.style.top=y-32+'px';gh.style.transform='rotate('+a*.4+'deg)';gh.style.opacity='.35';clearTimeout(gt);gt=setTimeout(()=&gt;gh.style.opacity='0',180);}lx=p.x;ly=p.y;if(p.y&gt;=90&amp;&amp;!ld){ld=true;s.style.transition='left 1s,top 1s,transform .7s';s.style.transform='rotate(0)scale(.8)';setTimeout(()=&gt;{s.classList.replace('bf-fly','bf-land');s.style.filter='drop-shadow(0 0 28px #Ed71a8)drop-shadow(0 0 12px #5bb8f5)drop-shadow(0 0 4px #fff)';sp(x,y);sp(x,y);sp(x,y);},700);}});},{passive:true});
+})();
+&lt;/script&gt;`;
+  document.getElementById('ec').innerHTML = EMBED;
 })();
 
 function copyEmbed(){
-  const raw=`<!-- BUTTERFLY EMBED — paste anywhere -->
-<style id="bf-sty">
-#bf-w{position:fixed;inset:0;pointer-events:none;z-index:9999}
-#bf-s{position:absolute;width:80px;height:64px;filter:drop-shadow(0 0 14px #Ed71a8) drop-shadow(0 0 5px #383637)}
-.bfl{transform-origin:60px 46px}.bfr{transform-origin:60px 46px}
-@keyframes bfl{50%{transform:rotateY(58deg)scaleX(.35)}}
-@keyframes bfr{50%{transform:rotateY(-58deg)scaleX(.35)}}
-@keyframes bfo{to{transform:rotateY(82deg)scaleX(.18)}}
-@keyframes bfc{to{transform:rotateY(-82deg)scaleX(.18)}}
-.bf-fly .bfl{animation:bfl .4s ease-in-out infinite}
-.bf-fly .bfr{animation:bfr .4s ease-in-out infinite}
-.bf-land .bfl{animation:bfo 1.3s cubic-bezier(.16,1,.3,1)forwards}
-.bf-land .bfr{animation:bfc 1.3s cubic-bezier(.16,1,.3,1)forwards}
-.bf-t{position:fixed;width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:9998;animation:bft .7s ease-out forwards}
-@keyframes bft{to{opacity:0;transform:scale(0)}}
-</style>
-<div id="bf-w"><svg id="bf-s" viewBox="0 0 120 90">
-<defs>
-<linearGradient id="bfg1" x1="0%" y1="0%" x2="100%" y2="100%">
-  <stop offset="0%" stop-color="#Ed71a8"/><stop offset="40%" stop-color="#383637"/>
-  <stop offset="70%" stop-color="#Ed71a8"/><stop offset="100%" stop-color="#f093b8"/>
-</linearGradient>
-<linearGradient id="bfg2" x1="100%" y1="0%" x2="0%" y2="100%">
-  <stop offset="0%" stop-color="#383637"/><stop offset="50%" stop-color="#Ed71a8"/>
-  <stop offset="100%" stop-color="#f4a0c4"/>
-</linearGradient>
-</defs>
-<g class="bfl"><path d="M60,44 C50,25 30,8 10,12 C2,14 0,26 4,36 C8,44 24,46 44,44Z" fill="rgba(237,113,168,.15)" stroke="url(#bfg1)" stroke-width="2"/><path d="M60,44 C45,30 20,18 8,24" fill="none" stroke="url(#bfg2)" stroke-width=".8"/><circle cx="18" cy="16" r="2.5" fill="rgba(255,255,255,.5)"/></g>
-<g class="bfr"><path d="M60,44 C70,25 90,8 110,12 C118,14 120,26 116,36 C112,44 96,46 76,44Z" fill="rgba(237,113,168,.15)" stroke="url(#bfg1)" stroke-width="2"/><path d="M60,44 C75,30 100,18 112,24" fill="none" stroke="url(#bfg2)" stroke-width=".8"/><circle cx="102" cy="16" r="2.5" fill="rgba(255,255,255,.5)"/></g>
-<g class="bfl"><path d="M60,48 C44,56 22,62 12,74 C6,82 14,88 26,82 C42,74 56,60 60,48Z" fill="rgba(56,54,55,.28)" stroke="url(#bfg2)" stroke-width="2"/><circle cx="16" cy="78" r="3" fill="#Ed71a8" opacity=".7"/></g>
-<g class="bfr"><path d="M60,48 C76,56 98,62 108,74 C114,82 106,88 94,82 C78,74 64,60 60,48Z" fill="rgba(56,54,55,.28)" stroke="url(#bfg2)" stroke-width="2"/><circle cx="104" cy="78" r="3" fill="#Ed71a8" opacity=".7"/></g>
-<ellipse cx="60" cy="50" rx="3" ry="20" fill="rgba(237,113,168,.6)" stroke="url(#bfg1)" stroke-width="1"/>
-<circle cx="60" cy="28" r="4.5" fill="#383637" stroke="#Ed71a8" stroke-width="1.5"/>
-<path d="M59,24 Q48,12 42,8" fill="none" stroke="url(#bfg1)" stroke-width="1.2" stroke-linecap="round"/><circle cx="42" cy="8" r="2" fill="#fff" opacity=".8"/>
-<path d="M61,24 Q72,12 78,8" fill="none" stroke="url(#bfg1)" stroke-width="1.2" stroke-linecap="round"/><circle cx="78" cy="8" r="2" fill="#fff" opacity=".8"/>
-</svg></div>
-<script>
-(function(){
-const s=document.getElementById('bf-s');
-const W=[[78,8],[18,20],[65,34],[10,50],[72,64],[30,76],[50,87]];
-let lx=78,ly=8,ld=false;
-function cr(t,a,b,c,d){const u=1-t;return u*u*b+2*u*t*c+t*t*d}
-function gp(p){const n=W.length-1,g=Math.min(~~(p*n),n-1),t=p*n-g;return{x:cr(t,0,W[g][0],W[Math.min(n,g+1)][0],W[Math.min(n,g+1)][0]),y:cr(t,0,W[g][1],W[Math.min(n,g+1)][1],W[Math.min(n,g+1)][1])}}
-s.classList.add('bf-fly');
-s.style.cssText+='left:'+Math.round(W[0][0]/100*innerWidth-40)+'px;top:'+Math.round(W[0][1]/100*innerHeight-32)+'px';
-window.addEventListener('scroll',function(){
-if(ld)return;
-requestAnimationFrame(function(){
-const dH=document.documentElement.scrollHeight-innerHeight;
-const p=gp(Math.min(dH>0?scrollY/dH:0,1));
-const x=p.x/100*innerWidth,y=p.y/100*innerHeight;
-const a=Math.atan2(p.y-ly,p.x-lx)*57.3-90;
-s.style.left=x-40+'px';s.style.top=y-32+'px';s.style.transform='rotate('+a*.4+'deg)';
-if(Math.hypot(x-lx/100*innerWidth,y-ly/100*innerHeight)>8){
-const d=document.createElement('div');
-d.className='bf-t';d.style.cssText='left:'+x+'px;top:'+y+'px;background:'+(Math.random()>.5?'#Ed71a8':'#383637');
-document.body.appendChild(d);setTimeout(function(){d.remove()},720);}
-lx=p.x;ly=p.y;
-if(p.y>=90&&!ld){ld=true;s.style.transition='left 1s,top 1s,transform .7s';s.style.transform='rotate(0)scale(.8)';setTimeout(function(){s.classList.replace('bf-fly','bf-land');s.style.filter='drop-shadow(0 0 28px #Ed71a8)drop-shadow(0 0 10px #fff)'},700);}
-});},{passive:true});
-})();
-<\/script>`;
+  const raw = document.getElementById('ec').innerText
+    .replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
   navigator.clipboard.writeText(raw).then(()=>{
     const b=document.querySelector('.copy-btn');
     b.textContent='COPIED';setTimeout(()=>b.textContent='COPY',2000);
