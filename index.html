@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Transformation — Santoshland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reset ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pink:   #F48CB4;
+  --pink-d: #d4689a;
+  --gold:   #C8860A;
+  --gold-l: #e8a832;
+  --dark:   #1A0F0A;
+  --dark2:  #251710;
+  --cream:  #FDF6EE;
+  --cream2: #F5EDE2;
+  --text:   #2C1810;
+  --muted:  #7A5C4A;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background: var(--dark);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ── Butterfly ──────────────────────────────────── */
+#butterfly-wrap {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+}
+
+#butterfly-svg {
+  position: absolute;
+  width: 90px;
+  height: 72px;
+  transform-origin: center center;
+  filter: drop-shadow(0 0 12px rgba(244,140,180,.5));
+  transition: filter .3s;
+  will-change: transform;
+}
+
+/* Wing pivot from body center */
+.w-ul { transform-origin: 60px 44px; }
+.w-ur { transform-origin: 60px 44px; }
+.w-ll { transform-origin: 60px 48px; }
+.w-lr { transform-origin: 60px 48px; }
+
+/* Flapping — wings fold in on Y axis from center */
+@keyframes flap-l {
+  0%   { transform: rotateY(0deg) scaleX(1); }
+  50%  { transform: rotateY(55deg) scaleX(0.45); }
+  100% { transform: rotateY(0deg) scaleX(1); }
+}
+@keyframes flap-r {
+  0%   { transform: rotateY(0deg) scaleX(1); }
+  50%  { transform: rotateY(-55deg) scaleX(0.45); }
+  100% { transform: rotateY(0deg) scaleX(1); }
+}
+@keyframes fold-l {
+  to { transform: rotateY(75deg) scaleX(0.25); }
+}
+@keyframes fold-r {
+  to { transform: rotateY(-75deg) scaleX(0.25); }
+}
+
+.flapping .w-ul,
+.flapping .w-ll { animation: flap-l .45s ease-in-out infinite; }
+.flapping .w-ur,
+.flapping .w-lr { animation: flap-r .45s ease-in-out infinite; }
+
+.landing-anim .w-ul,
+.landing-anim .w-ll { animation: fold-l 1.4s cubic-bezier(.16,1,.3,1) forwards; }
+.landing-anim .w-ur,
+.landing-anim .w-lr { animation: fold-r 1.4s cubic-bezier(.16,1,.3,1) forwards; }
+
+
+/* ── Trail particles ────────────────────────────── */
+.trail-dot {
+  position: fixed;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 998;
+  background: var(--pink);
+  opacity: 0;
+  animation: trail-fade .8s ease-out forwards;
+}
+@keyframes trail-fade {
+  0%   { opacity: .7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0); }
+}
+
+
+/* ── Sections ───────────────────────────────────── */
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Hero ───────────────────────────────────────── */
+.s-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--dark);
+}
+
+.hero-inner { padding: 120px 24px 80px; max-width: 740px; }
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-l);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fade-up .9s .3s ease forwards;
+}
+
+.hero-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(36px, 7vw, 76px);
+  font-weight: 600;
+  line-height: 1.12;
+  color: #fff;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fade-up 1s .5s ease forwards;
+}
+.hero-title em {
+  display: block;
+  font-style: italic;
+  color: var(--pink);
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 19px);
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255,255,255,.55);
+  max-width: 500px;
+  margin: 0 auto 44px;
+  opacity: 0;
+  animation: fade-up 1s .7s ease forwards;
+}
+
+/* Scroll hint */
+.scroll-down {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.35);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  animation: bob 2s ease-in-out infinite;
+  opacity: 0;
+  animation: bob 2s ease-in-out infinite, fade-up .8s 1.2s ease forwards;
+}
+
+
+/* ── Quote Section ──────────────────────────────── */
+.s-quote {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+  padding: 100px 24px;
+}
+
+.quote-inner {
+  max-width: 780px;
+  text-align: center;
+}
+
+blockquote.big {
+  font-family: 'Lora', serif;
+  font-size: clamp(22px, 3.5vw, 38px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+blockquote.big span { color: var(--pink-d); }
+
+.quote-author {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+
+/* ── Three Truths ───────────────────────────────── */
+.s-truths {
+  min-height: 80vh;
+  background: var(--dark2);
+  padding: 100px 24px;
+}
+
+.s-truths .inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-l);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 600;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 56px;
+}
+.section-title em { font-style: italic; color: var(--pink); }
+
+.truths-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.truth-card {
+  padding: 48px 36px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(200,134,10,.1);
+  border-radius: 2px;
+  transition: background .3s, transform .3s;
+}
+.truth-card:hover {
+  background: rgba(255,255,255,.05);
+  transform: translateY(-4px);
+}
+
+.truth-num {
+  font-family: 'Lora', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: rgba(200,134,10,.25);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.truth-card h3 {
+  font-family: 'Lora', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.truth-card p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255,255,255,.45);
+}
+
+.truth-accent {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold-l);
+}
+
+
+/* ── Journey path ───────────────────────────────── */
+.s-journey {
+  min-height: 100vh;
+  background: var(--cream2);
+  padding: 100px 24px;
+  display: flex;
+  align-items: center;
+}
+
+.journey-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.journey-copy .section-title { color: var(--text); }
+.journey-copy .section-eyebrow { color: var(--gold); }
+
+.journey-copy p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.steps-list { margin-top: 40px; }
+
+.step-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--pink-d));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.step-item div h4 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.step-item div p  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* Morph visual — caterpillar → butterfly stages */
+.morph-stages {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+}
+
+.morph-stage {
+  width: 100%;
+  max-width: 340px;
+  padding: 32px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 32px rgba(200,134,10,.1);
+  text-align: center;
+  border-top: 3px solid var(--pink);
+}
+
+.morph-icon { font-size: 40px; margin-bottom: 12px; }
+.morph-stage h4 { font-family:'Lora',serif; font-size:17px; color:var(--text); margin-bottom:6px; }
+.morph-stage p  { font-size:13px; color:var(--muted); line-height:1.6; }
+
+.morph-arrow { color: var(--pink-d); font-size: 24px; margin: -24px 0; z-index: 1; position: relative; }
+
+
+/* ── Lotus Landing ──────────────────────────────── */
+.s-landing {
+  min-height: 100vh;
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 100px;
+  text-align: center;
+  position: relative;
+}
+
+.lotus-wrap {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto 60px;
+}
+
+/* Lotus glow */
+.lotus-glow {
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,140,180,.15) 0%, transparent 65%);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%,100% { opacity: .6; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.12); }
+}
+
+/* Water ripples */
+.ripple {
+  position: absolute;
+  left: 50%; bottom: 10px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(244,140,180,.3);
+  animation: ripple-out 3s ease-out infinite;
+}
+.ripple:nth-child(2) { animation-delay: 1s; }
+.ripple:nth-child(3) { animation-delay: 2s; }
+@keyframes ripple-out {
+  0%   { width: 40px; height: 16px; opacity: .6; }
+  100% { width: 280px; height: 80px; opacity: 0; }
+}
+
+/* Lotus SVG */
+#lotus-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 24px rgba(244,140,180,.3));
+}
+
+/* Petal bloom */
+.petal-outer { opacity: 0; transform-origin: 50% 90%; transition: opacity 1.2s, transform 1.2s cubic-bezier(.16,1,.3,1); }
+.petal-mid   { opacity: 0; transform-origin: 50% 85%; transition: opacity 1s .3s cubic-bezier(.16,1,.3,1), transform 1s .3s cubic-bezier(.16,1,.3,1); }
+.petal-inner { opacity: 0; transform-origin: 50% 80%; transition: opacity .8s .6s cubic-bezier(.16,1,.3,1), transform .8s .6s cubic-bezier(.16,1,.3,1); }
+
+.petal-outer { transform: scaleY(0.1) translateY(60px); }
+.petal-mid   { transform: scaleY(0.15) translateY(40px); }
+.petal-inner { transform: scaleY(0.2) translateY(20px); }
+
+.lotus-bloomed .petal-outer { opacity: 1; transform: scaleY(1) translateY(0); }
+.lotus-bloomed .petal-mid   { opacity: 1; transform: scaleY(1) translateY(0); }
+.lotus-bloomed .petal-inner { opacity: 1; transform: scaleY(1) translateY(0); }
+
+/* CTA */
+.landing-cta .section-title { color: #fff; margin-bottom: 16px; }
+.landing-cta .section-eyebrow { color: var(--pink); }
+
+.landing-cta p {
+  font-size: 18px;
+  color: rgba(255,255,255,.5);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 460px;
+  margin: 0 auto 40px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-d) 100%);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(244,140,180,.35);
+  transition: transform .25s, box-shadow .25s;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 44px rgba(244,140,180,.5);
+}
+
+/* Golden ratio divider */
+.divider {
+  width: 48px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 32px auto;
+}
+
+
+/* ── Reveal ─────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+}
+.reveal.vis { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; }
+.d4 { transition-delay: .4s; }
+
+
+/* ── Keyframes ──────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bob {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(8px); }
+}
+
+
+/* ── Nav ────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 0 32px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background .35s, backdrop-filter .35s;
+}
+nav.scrolled {
+  background: rgba(26,15,10,.9);
+  backdrop-filter: blur(14px);
+}
+.nav-logo {
+  font-family: 'Lora', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+.nav-logo span { color: var(--pink); }
+
+.nav-right { display: flex; gap: 32px; align-items: center; }
+.nav-link  {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-link:hover { color: var(--gold-l); }
+
+.nav-btn {
+  padding: 9px 20px;
+  border: 1.5px solid var(--pink);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--pink);
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.nav-btn:hover { background: var(--pink); color: #fff; }
+
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .truths-grid { grid-template-columns: 1fr; }
+  .journey-inner { grid-template-columns: 1fr; gap: 48px; }
+  .nav-right .nav-link { display: none; }
+  #butterfly-svg { width: 64px; height: 52px; }
+  .lotus-wrap { width: 260px; height: 260px; }
+}
+
+
+/* ── Reduced motion ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAV ═══════ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Santosh<span>land</span></a>
+  <div class="nav-right">
+    <a href="#journey" class="nav-link">Journey</a>
+    <a href="#landing" class="nav-link">Begin</a>
+    <a href="#landing" class="nav-btn">Start Free</a>
+  </div>
+</nav>
+
+
+<!-- ═══════ BUTTERFLY ═══════ -->
+<div id="butterfly-wrap">
+  <svg id="butterfly-svg" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+    <!-- Upper left wing -->
+    <g class="w-ul">
+      <path d="M60,44 C55,30 40,12 18,10 C8,9 3,18 5,28 C7,38 18,44 32,44 C44,44 54,44 60,44 Z"
+            fill="#F48CB4" opacity=".92"/>
+      <path d="M60,44 C55,30 40,12 18,10 C8,9 3,18 5,28 C7,38 18,44 32,44 Z"
+            fill="none" stroke="#d4689a" stroke-width=".8" opacity=".6"/>
+      <!-- Vein lines -->
+      <line x1="60" y1="44" x2="15" y2="16" stroke="#C8860A" stroke-width=".6" opacity=".5"/>
+      <line x1="60" y1="44" x2="8"  y2="26" stroke="#C8860A" stroke-width=".5" opacity=".4"/>
+      <line x1="60" y1="44" x2="20" y2="44" stroke="#C8860A" stroke-width=".5" opacity=".4"/>
+      <!-- Spots -->
+      <circle cx="22" cy="18" r="3"   fill="rgba(255,255,255,.35)"/>
+      <circle cx="12" cy="28" r="2.5" fill="rgba(255,255,255,.3)"/>
+      <circle cx="30" cy="14" r="2"   fill="rgba(255,255,255,.25)"/>
+      <circle cx="8"  cy="36" r="1.8" fill="rgba(255,255,255,.2)"/>
+      <!-- Inner sheen -->
+      <path d="M60,44 C56,36 46,24 30,20 C22,18 14,22 10,28" fill="rgba(255,255,255,.07)" stroke="none"/>
+    </g>
+
+    <!-- Upper right wing (mirrored) -->
+    <g class="w-ur">
+      <path d="M60,44 C65,30 80,12 102,10 C112,9 117,18 115,28 C113,38 102,44 88,44 C76,44 66,44 60,44 Z"
+            fill="#F48CB4" opacity=".92"/>
+      <path d="M60,44 C65,30 80,12 102,10 C112,9 117,18 115,28 C113,38 102,44 88,44 Z"
+            fill="none" stroke="#d4689a" stroke-width=".8" opacity=".6"/>
+      <line x1="60" y1="44" x2="105" y2="16" stroke="#C8860A" stroke-width=".6" opacity=".5"/>
+      <line x1="60" y1="44" x2="112" y2="26" stroke="#C8860A" stroke-width=".5" opacity=".4"/>
+      <line x1="60" y1="44" x2="100" y2="44" stroke="#C8860A" stroke-width=".5" opacity=".4"/>
+      <circle cx="98" cy="18" r="3"   fill="rgba(255,255,255,.35)"/>
+      <circle cx="108" cy="28" r="2.5" fill="rgba(255,255,255,.3)"/>
+      <circle cx="90" cy="14" r="2"   fill="rgba(255,255,255,.25)"/>
+      <circle cx="112" cy="36" r="1.8" fill="rgba(255,255,255,.2)"/>
+      <path d="M60,44 C64,36 74,24 90,20 C98,18 106,22 110,28" fill="rgba(255,255,255,.07)" stroke="none"/>
+    </g>
+
+    <!-- Lower left wing -->
+    <g class="w-ll">
+      <path d="M60,48 C52,52 36,56 20,66 C10,72 8,80 16,82 C26,84 42,76 54,64 C58,60 60,54 60,48 Z"
+            fill="#d4689a" opacity=".85"/>
+      <line x1="60" y1="48" x2="14" y2="74" stroke="#C8860A" stroke-width=".6" opacity=".45"/>
+      <line x1="60" y1="48" x2="24" y2="80" stroke="#C8860A" stroke-width=".5" opacity=".35"/>
+      <circle cx="22" cy="72" r="2.2" fill="rgba(255,255,255,.3)"/>
+      <circle cx="32" cy="78" r="1.8" fill="rgba(255,255,255,.2)"/>
+      <!-- Gold tail spot -->
+      <circle cx="16" cy="80" r="3.5" fill="#e8a832" opacity=".7"/>
+    </g>
+
+    <!-- Lower right wing -->
+    <g class="w-lr">
+      <path d="M60,48 C68,52 84,56 100,66 C110,72 112,80 104,82 C94,84 78,76 66,64 C62,60 60,54 60,48 Z"
+            fill="#d4689a" opacity=".85"/>
+      <line x1="60" y1="48" x2="106" y2="74" stroke="#C8860A" stroke-width=".6" opacity=".45"/>
+      <line x1="60" y1="48" x2="96" y2="80"  stroke="#C8860A" stroke-width=".5" opacity=".35"/>
+      <circle cx="98" cy="72" r="2.2" fill="rgba(255,255,255,.3)"/>
+      <circle cx="88" cy="78" r="1.8" fill="rgba(255,255,255,.2)"/>
+      <circle cx="104" cy="80" r="3.5" fill="#e8a832" opacity=".7"/>
+    </g>
+
+    <!-- Body -->
+    <ellipse cx="60" cy="48" rx="4" ry="22" fill="#1A0F0A"/>
+    <ellipse cx="60" cy="48" rx="2.5" ry="20" fill="#321f14"/>
+    <!-- Head -->
+    <circle cx="60" cy="26" r="5" fill="#1A0F0A"/>
+    <circle cx="60" cy="26" r="3.5" fill="#251710"/>
+    <!-- Eyes -->
+    <circle cx="57.5" cy="25" r="1.2" fill="#e8a832"/>
+    <circle cx="62.5" cy="25" r="1.2" fill="#e8a832"/>
+    <!-- Antennae -->
+    <path d="M59,22 Q50,12 44,8" fill="none" stroke="#1A0F0A" stroke-width="1.2" stroke-linecap="round"/>
+    <circle cx="44" cy="8" r="2.5" fill="#C8860A"/>
+    <path d="M61,22 Q70,12 76,8" fill="none" stroke="#1A0F0A" stroke-width="1.2" stroke-linecap="round"/>
+    <circle cx="76" cy="8" r="2.5" fill="#C8860A"/>
+  </svg>
+</div>
+
+
+<!-- ═══════ HERO ═══════ -->
+<section class="s-hero">
+  <div class="hero-inner">
+    <p class="eyebrow">A Santoshland Journey</p>
+    <h1 class="hero-title">
+      Every transformation
+      <em>has a beginning.</em>
+    </h1>
+    <p class="hero-sub">
+      The butterfly does not become beautiful by accident.
+      Neither does healing. Follow the flight.
+    </p>
+  </div>
+  <div class="scroll-down">
+    <span>Scroll</span>
+    <svg width="14" height="22" viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="1" y="1" width="12" height="20" rx="6"/>
+      <circle cx="7" cy="7" r="1.8" fill="currentColor" stroke="none">
+        <animate attributeName="cy" values="7;13;7" dur="2s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══════ QUOTE ═══════ -->
+<section class="s-quote">
+  <div class="quote-inner">
+    <blockquote class="big reveal">
+      "The caterpillar does not simply grow wings.<br>
+      It dissolves entirely — <span>trusting the process</span> —<br>
+      and emerges as something it could never have imagined."
+    </blockquote>
+    <div class="divider"></div>
+    <p class="quote-author reveal d2">Ancient Ayurvedic Wisdom</p>
+  </div>
+</section>
+
+
+<!-- ═══════ TRUTHS ═══════ -->
+<section class="s-truths">
+  <div class="inner">
+    <p class="section-eyebrow reveal">Three Truths</p>
+    <h2 class="section-title reveal d1">Your body already knows<br><em>the way home.</em></h2>
+
+    <div class="truths-grid">
+      <div class="truth-card reveal">
+        <div class="truth-num">01</div>
+        <h3>You are not broken</h3>
+        <p>Every symptom is a message. Fatigue, inflammation, anxiety — these are your body speaking the only language available. Ayurveda teaches you to listen.</p>
+        <span class="truth-accent">Vata · Pitta · Kapha</span>
+      </div>
+      <div class="truth-card reveal d2">
+        <div class="truth-num">02</div>
+        <h3>Balance is your birthright</h3>
+        <p>You were born with a perfect constitution — your <em>prakruti</em>. Life pulls it out of alignment. We guide you back. Not to someone else's ideal. To yours.</p>
+        <span class="truth-accent">Root Cause Healing</span>
+      </div>
+      <div class="truth-card reveal d3">
+        <div class="truth-num">03</div>
+        <h3>Nature already made the medicine</h3>
+        <p>5,000 years of observation encoded into herbs, rhythms, foods, and practices. Not generic. Not synthetic. Precisely matched to your dosha and your season.</p>
+        <span class="truth-accent">Non-Invasive · Natural</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ JOURNEY ═══════ -->
+<section class="s-journey" id="journey">
+  <div class="journey-inner">
+    <div class="journey-copy">
+      <p class="section-eyebrow reveal">The Process</p>
+      <h2 class="section-title reveal d1">From chrysalis<br><em>to flight.</em></h2>
+      <p class="reveal d2">Like the butterfly, your transformation cannot be rushed. But it can be guided — with precision, wisdom, and the knowledge of what your specific nature needs.</p>
+      <p class="reveal d2">This is not a wellness trend. It is a return to the most intelligent system ever developed for human health.</p>
+
+      <div class="steps-list">
+        <div class="step-item reveal d2">
+          <div class="step-num">1</div>
+          <div>
+            <h4>Discover Your Dosha</h4>
+            <p>15 minutes. Your constitution mapped. Clarity on what your body has been trying to tell you.</p>
+          </div>
+        </div>
+        <div class="step-item reveal d3">
+          <div class="step-num">2</div>
+          <div>
+            <h4>Find the Root</h4>
+            <p>Ancient diagnostic tools identify the exact imbalance driving every symptom you have.</p>
+          </div>
+        </div>
+        <div class="step-item reveal d4">
+          <div class="step-num">3</div>
+          <div>
+            <h4>Transform</h4>
+            <p>A personalized plan — foods, herbs, practices — built for your nature. Not a template. Yours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="morph-stages reveal d2">
+      <div class="morph-stage">
+        <div class="morph-icon">🐛</div>
+        <h4>Before Santoshland</h4>
+        <p>Treating symptoms. Tired of temporary fixes. Feeling disconnected from your own body.</p>
+      </div>
+      <div class="morph-arrow">↓</div>
+      <div class="morph-stage">
+        <div class="morph-icon">🫧</div>
+        <h4>The Chrysalis</h4>
+        <p>Discovering your dosha. Understanding the root cause. The dissolution before transformation.</p>
+      </div>
+      <div class="morph-arrow" style="color:var(--pink-d)">↓</div>
+      <div class="morph-stage" style="border-top-color:var(--gold)">
+        <div class="morph-icon">🦋</div>
+        <h4>After</h4>
+        <p>Energy. Clarity. Skin that glows. Sleep that restores. A body working with you, not against you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ LOTUS LANDING ═══════ -->
+<section class="s-landing" id="landing">
+
+  <!-- Water ripples -->
+  <div style="position:absolute;bottom:15%;left:50%;transform:translateX(-50%);">
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+  </div>
+
+  <!-- Lotus -->
+  <div class="lotus-wrap" id="lotus-wrap">
+    <div class="lotus-glow"></div>
+    <svg id="lotus-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Outer petals (8) -->
+      <g class="petal-outer">
+        <!-- Petal 1 — top -->
+        <ellipse cx="160" cy="80" rx="22" ry="55" fill="#F48CB4" opacity=".7" transform="rotate(0 160 190)"/>
+        <!-- Petal 2 -->
+        <ellipse cx="160" cy="80" rx="22" ry="55" fill="#F48CB4" opacity=".65" transform="rotate(45 160 190)"/>
+        <!-- Petal 3 -->
+        <ellipse cx="160" cy="80" rx="22" ry="55" fill="#F48CB4" opacity=".6" transform="rotate(90 160 190)"/>
+        <!-- Petal 4 -->
+        <ellipse cx="160" cy="80" rx="22" ry="55" fill="#F48CB4" opacity=".65" transform="rotate(135 160 190)"/>
+        <!-- Petal 5 -->
+        <ellipse cx="160" cy="80" rx="22" ry="55" fill="#F48CB4" opacity=".7" transform="rotate(180 160 190)"/>
+        <!-- Petal 6 -->
+        <ellipse cx="160" cy="80" rx="22" ry="55" fill="#F48CB4" opacity=".65" transform="rotate(225 160 190)"/>
+        <!-- Petal 7 -->
+        <ellipse cx="160" cy="80" rx="22" ry="55" fill="#F48CB4" opacity=".6" transform="rotate(270 160 190)"/>
+        <!-- Petal 8 -->
+        <ellipse cx="160" cy="80" rx="22" ry="55" fill="#F48CB4" opacity=".65" transform="rotate(315 160 190)"/>
+      </g>
+
+      <!-- Mid petals (8 — offset 22.5°, shorter) -->
+      <g class="petal-mid">
+        <ellipse cx="160" cy="95" rx="18" ry="46" fill="#F48CB4" opacity=".8"  transform="rotate(22.5 160 190)"/>
+        <ellipse cx="160" cy="95" rx="18" ry="46" fill="#F48CB4" opacity=".75" transform="rotate(67.5 160 190)"/>
+        <ellipse cx="160" cy="95" rx="18" ry="46" fill="#F48CB4" opacity=".8"  transform="rotate(112.5 160 190)"/>
+        <ellipse cx="160" cy="95" rx="18" ry="46" fill="#F48CB4" opacity=".75" transform="rotate(157.5 160 190)"/>
+        <ellipse cx="160" cy="95" rx="18" ry="46" fill="#F48CB4" opacity=".8"  transform="rotate(202.5 160 190)"/>
+        <ellipse cx="160" cy="95" rx="18" ry="46" fill="#F48CB4" opacity=".75" transform="rotate(247.5 160 190)"/>
+        <ellipse cx="160" cy="95" rx="18" ry="46" fill="#F48CB4" opacity=".8"  transform="rotate(292.5 160 190)"/>
+        <ellipse cx="160" cy="95" rx="18" ry="46" fill="#F48CB4" opacity=".75" transform="rotate(337.5 160 190)"/>
+      </g>
+
+      <!-- Inner petals (6 — upright, deep pink) -->
+      <g class="petal-inner">
+        <ellipse cx="160" cy="118" rx="13" ry="34" fill="#d4689a" opacity=".9"  transform="rotate(0 160 190)"/>
+        <ellipse cx="160" cy="118" rx="13" ry="34" fill="#d4689a" opacity=".85" transform="rotate(60 160 190)"/>
+        <ellipse cx="160" cy="118" rx="13" ry="34" fill="#d4689a" opacity=".9"  transform="rotate(120 160 190)"/>
+        <ellipse cx="160" cy="118" rx="13" ry="34" fill="#d4689a" opacity=".85" transform="rotate(180 160 190)"/>
+        <ellipse cx="160" cy="118" rx="13" ry="34" fill="#d4689a" opacity=".9"  transform="rotate(240 160 190)"/>
+        <ellipse cx="160" cy="118" rx="13" ry="34" fill="#d4689a" opacity=".85" transform="rotate(300 160 190)"/>
+      </g>
+
+      <!-- Stamens -->
+      <g id="stamens" opacity="0" style="transition:opacity 1s 1.2s">
+        <circle cx="160" cy="175" r="18" fill="#C8860A" opacity=".9"/>
+        <circle cx="160" cy="175" r="12" fill="#e8a832"/>
+        <circle cx="160" cy="175" r="6"  fill="#FDF6EE"/>
+        <!-- Stamen threads -->
+        <g stroke="#e8a832" stroke-width=".8" opacity=".7">
+          <line x1="160" y1="163" x2="152" y2="152"/><circle cx="152" cy="151" r="1.5" fill="#e8a832"/>
+          <line x1="160" y1="163" x2="168" y2="152"/><circle cx="168" cy="151" r="1.5" fill="#e8a832"/>
+          <line x1="160" y1="163" x2="145" y2="157"/><circle cx="144" cy="156" r="1.5" fill="#e8a832"/>
+          <line x1="160" y1="163" x2="175" y2="157"/><circle cx="176" cy="156" r="1.5" fill="#e8a832"/>
+          <line x1="160" y1="163" x2="160" y2="150"/><circle cx="160" cy="149" r="1.5" fill="#e8a832"/>
+          <line x1="160" y1="163" x2="148" y2="165"/><circle cx="147" cy="165" r="1.5" fill="#e8a832"/>
+          <line x1="160" y1="163" x2="172" y2="165"/><circle cx="173" cy="165" r="1.5" fill="#e8a832"/>
+          <line x1="160" y1="163" x2="142" y2="170"/><circle cx="141" cy="171" r="1.5" fill="#e8a832"/>
+          <line x1="160" y1="163" x2="178" y2="170"/><circle cx="179" cy="171" r="1.5" fill="#e8a832"/>
+        </g>
+      </g>
+
+      <!-- Lily pad -->
+      <ellipse cx="160" cy="228" rx="80" ry="28" fill="#0d1f1a" opacity=".8"/>
+      <ellipse cx="160" cy="228" rx="80" ry="28" fill="none" stroke="#7ec8b4" stroke-width=".8" opacity=".4"/>
+      <path d="M160,200 L160,228" stroke="#0d1f1a" stroke-width="3"/>
+      <!-- Pad veins -->
+      <path d="M160,228 Q130,222 100,230" fill="none" stroke="#7ec8b4" stroke-width=".6" opacity=".3"/>
+      <path d="M160,228 Q190,222 220,230" fill="none" stroke="#7ec8b4" stroke-width=".6" opacity=".3"/>
+      <path d="M160,228 Q145,215 140,200" fill="none" stroke="#7ec8b4" stroke-width=".6" opacity=".3"/>
+      <path d="M160,228 Q175,215 180,200" fill="none" stroke="#7ec8b4" stroke-width=".6" opacity=".3"/>
+    </svg>
+
+    <!-- Butterfly landing spot (positioned on top of lotus center) -->
+    <div id="landing-spot" style="position:absolute;top:54%;left:50%;width:4px;height:4px;transform:translate(-50%,-50%);pointer-events:none;"></div>
+  </div>
+
+  <!-- CTA content -->
+  <div class="landing-cta">
+    <p class="section-eyebrow reveal">You have arrived</p>
+    <h2 class="section-title reveal d1" style="font-family:'Lora',serif;font-size:clamp(28px,4vw,52px);font-weight:600;line-height:1.15;color:#fff;margin-bottom:16px;">
+      The lotus blooms from<br><em style="color:var(--gold-l)">the deepest water.</em>
+    </h2>
+    <div class="divider"></div>
+    <p class="reveal d2">Your transformation starts with one conversation. Free. No obligation. Just clarity.</p>
+    <a href="#" class="btn reveal d3">Begin Your Journey — Free</a>
+  </div>
+</section>
+
+
+<script>
+(function() {
+  'use strict';
+
+  // ── Nav scroll ─────────────────────────────────
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── Scroll reveal ──────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }});
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => obs.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('vis'));
+  }
+
+  // ── Butterfly system ───────────────────────────
+  const bfWrap = document.getElementById('butterfly-svg');
+  const lotusWrap = document.getElementById('lotus-wrap');
+  const stamens = document.getElementById('stamens');
+
+  let landed = false;
+  let lastX = 75, lastY = 8;
+  let trailTimer = null;
+
+  // Waypoints as % of viewport [x, y]
+  const WP = [
+    [78, 10],
+    [20, 20],
+    [65, 35],
+    [12, 52],
+    [70, 65],
+    [30, 76],
+    [50, 82],  // lotus landing
+  ];
+
+  // Catmull-Rom spline interpolation
+  function cr(t, p0, p1, p2, p3) {
+    const t2 = t*t, t3 = t2*t;
+    return .5*((2*p1)+(-p0+p2)*t+(2*p0-5*p1+4*p2-p3)*t2+(-p0+3*p1-3*p2+p3)*t3);
+  }
+
+  function getPos(prog) {
+    const n = WP.length - 1;
+    const seg = Math.min(Math.floor(prog * n), n - 1);
+    const t   = prog * n - seg;
+    const i0  = Math.max(0, seg-1);
+    const i1  = seg;
+    const i2  = Math.min(n, seg+1);
+    const i3  = Math.min(n, seg+2);
+    return {
+      x: cr(t, WP[i0][0], WP[i1][0], WP[i2][0], WP[i3][0]),
+      y: cr(t, WP[i0][1], WP[i1][1], WP[i2][1], WP[i3][1])
+    };
+  }
+
+  function spawnTrail(x, y) {
+    const dot = document.createElement('div');
+    dot.className = 'trail-dot';
+    dot.style.left = x + 'px';
+    dot.style.top  = y + 'px';
+    dot.style.width = dot.style.height = (Math.random() * 5 + 3) + 'px';
+    dot.style.background = Math.random() > .5 ? '#F48CB4' : '#e8a832';
+    document.body.appendChild(dot);
+    setTimeout(() => dot.remove(), 900);
+  }
+
+  let ticking = false;
+  function updateButterfly() {
+    if (landed) return;
+    if (prefersReduced) return;
+
+    const docH   = document.documentElement.scrollHeight - window.innerHeight;
+    const prog   = Math.min(docH > 0 ? window.scrollY / docH : 0, 1);
+    const pos    = getPos(prog);
+    const vw     = window.innerWidth;
+    const vh     = window.innerHeight;
+
+    const px = (pos.x / 100) * vw;
+    const py = (pos.y / 100) * vh;
+
+    // Rotation toward movement direction
+    const dx = pos.x - lastX;
+    const dy = pos.y - lastY;
+    const angle = Math.atan2(dy, dx) * (180/Math.PI) - 90;
+
+    bfWrap.style.left    = (px - 45) + 'px';
+    bfWrap.style.top     = (py - 36) + 'px';
+    bfWrap.style.transform = `rotate(${angle * 0.4}deg)`;
+
+    // Trail
+    if (Math.hypot(px - lastX * vw/100, py - lastY * vh/100) > 6) {
+      spawnTrail(px - 2, py - 2);
+    }
+
+    lastX = pos.x; lastY = pos.y;
+
+    // Landing trigger at 92%+ scroll
+    if (prog >= 0.92) {
+      triggerLanding(px, py);
+    }
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking && !landed) {
+      requestAnimationFrame(updateButterfly);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Initial position
+  bfWrap.style.left = (WP[0][0]/100 * window.innerWidth - 45) + 'px';
+  bfWrap.style.top  = (WP[0][1]/100 * window.innerHeight - 36) + 'px';
+  bfWrap.classList.add('flapping');
+
+  // ── Landing sequence ───────────────────────────
+  function triggerLanding(px, py) {
+    if (landed) return;
+    landed = true;
+
+    // Get lotus center position in viewport
+    const lotusRect = document.getElementById('landing-spot').getBoundingClientRect();
+    const finalX = lotusRect.left + window.scrollX;
+    const finalY = lotusRect.top + window.scrollY;
+
+    // Animate butterfly to exact lotus center
+    bfWrap.style.transition = 'left 1.2s cubic-bezier(.16,1,.3,1), top 1.2s cubic-bezier(.16,1,.3,1), transform .8s ease';
+    bfWrap.style.left = (finalX - 30) + 'px';
+    bfWrap.style.top  = (finalY - 55) + 'px';
+    bfWrap.style.transform = 'rotate(0deg) scale(.85)';
+
+    // Switch to landing animation
+    setTimeout(() => {
+      bfWrap.classList.remove('flapping');
+      bfWrap.classList.add('landing-anim');
+      bfWrap.style.filter = 'drop-shadow(0 0 20px rgba(244,140,180,.8))';
+    }, 800);
+
+    // Bloom lotus
+    setTimeout(() => {
+      lotusWrap.classList.add('lotus-bloomed');
+      stamens.style.opacity = '1';
+    }, 600);
+
+    // Ripple burst
+    setTimeout(() => {
+      const r = document.createElement('div');
+      r.style.cssText = `position:fixed;left:${finalX - 60}px;top:${finalY}px;width:120px;height:40px;border-radius:50%;border:2px solid rgba(244,140,180,.6);animation:ripple-out 1.5s ease-out forwards;pointer-events:none;z-index:997;`;
+      document.body.appendChild(r);
+      setTimeout(() => r.remove(), 1600);
+    }, 1200);
+  }
+
+})();
+</script>
+
+</body>
+</html>
